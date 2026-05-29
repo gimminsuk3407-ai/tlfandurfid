@@ -1,101 +1,302 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Profile</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>KIM MINSEOK</title>
 
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: "Pretendard", sans-serif;
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:"Pretendard","Apple SD Gothic Neo",sans-serif;
     }
 
-    body {
-      width: 100%;
-      height: 100vh;
-      background: linear-gradient(135deg, #e9e9e9, #cfcfcf);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
+    body{
+      width:100%;
+      height:100vh;
+      overflow:hidden;
+      background:#dcdcdc;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      position:relative;
     }
 
-    .card {
-      width: 420px;
-      background: rgba(255,255,255,0.75);
-      backdrop-filter: blur(12px);
-      border-radius: 28px;
-      padding: 30px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
-      text-align: center;
-      border: 1px solid rgba(255,255,255,0.5);
+    body::before{
+      content:"";
+      position:absolute;
+      width:900px;
+      height:900px;
+      background:radial-gradient(circle,rgba(255,255,255,0.9),transparent 70%);
+      filter:blur(40px);
+      z-index:0;
     }
 
-    .profile-image {
-      width: 100%;
-      border-radius: 22px;
-      object-fit: cover;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+    .window{
+      width:1200px;
+      height:760px;
+      background:rgba(255,255,255,0.62);
+      backdrop-filter:blur(20px);
+      border-radius:30px;
+      overflow:hidden;
+      box-shadow:
+      0 25px 70px rgba(0,0,0,0.12);
+      position:relative;
+      z-index:2;
+      border:1px solid rgba(255,255,255,0.4);
+      display:flex;
     }
 
-    h1 {
-      margin-top: 24px;
-      font-size: 32px;
-      letter-spacing: -1px;
-      color: #111;
+    .left{
+      width:48%;
+      height:100%;
+      padding:45px;
+      position:relative;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      background:linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.25),
+      rgba(255,255,255,0.08)
+      );
     }
 
-    p {
-      margin-top: 10px;
-      color: #666;
-      line-height: 1.7;
-      font-size: 15px;
+    .right{
+      width:52%;
+      height:100%;
+      padding:60px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      position:relative;
     }
 
-    .tag {
-      margin-top: 20px;
-      display: inline-block;
-      padding: 10px 18px;
-      border-radius: 999px;
-      background: #111;
-      color: white;
-      font-size: 13px;
-      letter-spacing: 1px;
+    .titlebar{
+      position:absolute;
+      top:22px;
+      left:28px;
+      display:flex;
+      gap:10px;
     }
 
-    .footer {
-      position: fixed;
-      bottom: 20px;
-      right: 25px;
-      color: #666;
-      font-size: 12px;
-      letter-spacing: 1px;
+    .dot{
+      width:12px;
+      height:12px;
+      border-radius:50%;
     }
+
+    .red{background:#ff5f57;}
+    .yellow{background:#febc2e;}
+    .green{background:#28c840;}
+
+    .profile-image{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      border-radius:26px;
+      box-shadow:
+      0 15px 40px rgba(0,0,0,0.12);
+    }
+
+    .image-box{
+      width:100%;
+      height:620px;
+      overflow:hidden;
+      border-radius:26px;
+    }
+
+    .mini-tag{
+      display:inline-flex;
+      width:max-content;
+      padding:10px 18px;
+      border-radius:999px;
+      background:#111;
+      color:white;
+      font-size:12px;
+      letter-spacing:2px;
+      margin-bottom:25px;
+    }
+
+    h1{
+      font-size:72px;
+      line-height:1;
+      letter-spacing:-4px;
+      margin-bottom:25px;
+      color:#111;
+    }
+
+    .desc{
+      font-size:17px;
+      color:#666;
+      line-height:1.9;
+      margin-bottom:45px;
+    }
+
+    .info-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:18px;
+    }
+
+    .info-card{
+      background:rgba(255,255,255,0.72);
+      border:1px solid rgba(255,255,255,0.5);
+      padding:24px;
+      border-radius:22px;
+      backdrop-filter:blur(10px);
+      box-shadow:
+      0 10px 30px rgba(0,0,0,0.05);
+      transition:.25s;
+    }
+
+    .info-card:hover{
+      transform:translateY(-6px);
+    }
+
+    .info-label{
+      font-size:12px;
+      letter-spacing:1px;
+      color:#888;
+      margin-bottom:10px;
+    }
+
+    .info-value{
+      font-size:22px;
+      font-weight:700;
+      letter-spacing:-1px;
+      color:#111;
+    }
+
+    .footer{
+      position:absolute;
+      bottom:28px;
+      right:40px;
+      font-size:12px;
+      color:#777;
+      letter-spacing:2px;
+    }
+
+    @media(max-width:1200px){
+
+      body{
+        overflow:auto;
+        padding:30px;
+      }
+
+      .window{
+        width:100%;
+        height:auto;
+        flex-direction:column;
+      }
+
+      .left,.right{
+        width:100%;
+      }
+
+      .image-box{
+        height:auto;
+      }
+
+      h1{
+        font-size:52px;
+      }
+
+    }
+
   </style>
+
 </head>
 
 <body>
 
-  <div class="card">
-    <img src="index.png" alt="프로필 사진" class="profile-image" />
+  <div class="window">
 
-    <h1>KIM MINSEOK</h1>
-
-    <p>
-      GitHub Pages 기반 개인 프로필 페이지입니다.<br/>
-      업로드한 이미지를 중심으로 미니멀 스타일로 구성했습니다.
-    </p>
-
-    <div class="tag">
-      PROFILE PAGE
+    <div class="titlebar">
+      <div class="dot red"></div>
+      <div class="dot yellow"></div>
+      <div class="dot green"></div>
     </div>
-  </div>
 
-  <div class="footer">
-    Designed for GitHub Pages
+    <div class="left">
+
+      <div class="image-box">
+        <img src="index(1).png" class="profile-image">
+      </div>
+
+    </div>
+
+    <div class="right">
+
+      <div class="mini-tag">
+        PERSONAL PROFILE
+      </div>
+
+      <h1>
+        KIM<br>
+        MINSEOK
+      </h1>
+
+      <div class="desc">
+        GitHub Pages 기반 개인 메인 페이지입니다.<br>
+        업로드한 프로필 이미지를 중심으로 구성했으며,<br>
+        Toss 스타일의 미니멀 UI와 윈도우형 레이아웃을 적용했습니다.
+      </div>
+
+      <div class="info-grid">
+
+        <div class="info-card">
+          <div class="info-label">
+            LOCATION
+          </div>
+
+          <div class="info-value">
+            BUSAN
+          </div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-label">
+            MAJOR
+          </div>
+
+          <div class="info-value">
+            SOCIAL WELFARE
+          </div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-label">
+            STYLE
+          </div>
+
+          <div class="info-value">
+            MINIMAL UI
+          </div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-label">
+            PLATFORM
+          </div>
+
+          <div class="info-value">
+            GITHUB PAGES
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="footer">
+      DESIGNED FOR GITHUB PAGES
+    </div>
+
   </div>
 
 </body>
